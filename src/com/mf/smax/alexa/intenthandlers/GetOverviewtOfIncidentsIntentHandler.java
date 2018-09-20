@@ -7,7 +7,7 @@ import com.mf.smax.alexa.request.SMAXRestRequest;
 
 import java.util.Optional;
 
-public class GetOverviewtOfIncidentsIntentHandler implements com.amazon.ask.dispatcher.request.handler.RequestHandler{
+public class GetOverviewtOfIncidentsIntentHandler implements com.amazon.ask.dispatcher.request.handler.RequestHandler {
     @Override
     public boolean canHandle(HandlerInput handlerInput) {
         return handlerInput.matches(Predicates.intentName("GetOverviewtOfIncidents"));
@@ -25,11 +25,8 @@ public class GetOverviewtOfIncidentsIntentHandler implements com.amazon.ask.disp
             e.printStackTrace();
         }
 
-        System.out.println(cookie);
-
-        System.out.println("\nTesting 2 - Send Http GET request");
         try {
-            speechText= http.sendGetPriorityAndRecordCount(cookie,"Incident");
+            speechText = http.sendGetPriorityAndRecordCount(cookie, "Incident");
         } catch (Exception e) {
             e.printStackTrace();
         }

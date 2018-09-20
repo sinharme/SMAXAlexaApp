@@ -14,7 +14,7 @@ public class SMAXSkillStreamHandler extends SkillStreamHandler {
                         new SessionEndedRequestHandler(),new GetOverviewtOfREquestsIntentHandler(),
                         new GetOverviewtOfChangesIntentHandler(),new GetOverviewtOfProblemsIntentHandler(),
                         new GetCriticalIncidentsDescIntentHandler(),new GetCriticalProblemsDescIntentHandler(),
-                        new GetOverviewtOfChangesIntentHandler(),new GetOverviewtOfProblemsIntentHandler()
+                        new GetCriticalChangesDescIntentHandler(),new GetCriticalRequestsDescIntentHandler()
                 )
                 .build();
     }

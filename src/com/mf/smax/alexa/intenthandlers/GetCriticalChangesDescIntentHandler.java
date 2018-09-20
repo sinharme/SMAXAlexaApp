@@ -7,10 +7,10 @@ import com.mf.smax.alexa.request.SMAXRestRequest;
 
 import java.util.Optional;
 
-public class GetCriticalProblemsDescIntentHandler implements com.amazon.ask.dispatcher.request.handler.RequestHandler {
+public class GetCriticalChangesDescIntentHandler implements com.amazon.ask.dispatcher.request.handler.RequestHandler {
     @Override
     public boolean canHandle(HandlerInput handlerInput) {
-        return handlerInput.matches(Predicates.intentName("GetCriticalProblemsDesc"));
+        return handlerInput.matches(Predicates.intentName("GetCriticalChangesDesc"));
     }
 
     @Override
@@ -26,7 +26,7 @@ public class GetCriticalProblemsDescIntentHandler implements com.amazon.ask.disp
         }
 
         try {
-            speechText = http.getRecordDescription(cookie, "Problem");
+            speechText = http.getRecordDescription(cookie, "Change");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -36,5 +36,4 @@ public class GetCriticalProblemsDescIntentHandler implements com.amazon.ask.disp
                 .withSimpleCard("Results", speechText)
                 .build();
     }
-
 }
