@@ -10,7 +10,7 @@ import java.util.Optional;
 public class GetCriticalIncidentsDescIntentHandler implements com.amazon.ask.dispatcher.request.handler.RequestHandler {
     @Override
     public boolean canHandle(HandlerInput handlerInput) {
-        return handlerInput.matches(Predicates.intentName("GetCriticalIncidentsDesc"));
+        return handlerInput.matches(Predicates.intentName("GetDescriptionOfCriticalIncidents"));
     }
 
     @Override

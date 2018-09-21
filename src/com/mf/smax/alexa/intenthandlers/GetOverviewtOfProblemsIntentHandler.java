@@ -10,7 +10,7 @@ import java.util.Optional;
 public class GetOverviewtOfProblemsIntentHandler implements com.amazon.ask.dispatcher.request.handler.RequestHandler {
     @Override
     public boolean canHandle(HandlerInput handlerInput) {
-        return handlerInput.matches(Predicates.intentName("GetOverviewtOfProblems"));
+        return handlerInput.matches(Predicates.intentName("GetOverviewOfProblems"));
     }
 
     @Override
