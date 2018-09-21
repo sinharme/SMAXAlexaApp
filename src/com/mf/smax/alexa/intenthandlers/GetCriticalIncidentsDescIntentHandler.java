@@ -34,6 +34,7 @@ public class GetCriticalIncidentsDescIntentHandler implements com.amazon.ask.dis
         return handlerInput.getResponseBuilder()
                 .withSpeech(speechText)
                 .withSimpleCard("Results", speechText)
+                .withReprompt(speechText)
                 .build();
     }
 }

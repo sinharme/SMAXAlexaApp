@@ -34,6 +34,7 @@ public class GetCriticalProblemsDescIntentHandler implements com.amazon.ask.disp
         return handlerInput.getResponseBuilder()
                 .withSpeech(speechText)
                 .withSimpleCard("Results", speechText)
+                .withReprompt(speechText)
                 .build();
     }
 

@@ -34,6 +34,7 @@ public class GetOverviewtOfREquestsIntentHandler implements com.amazon.ask.dispa
         return handlerInput.getResponseBuilder()
                 .withSpeech(speechText)
                 .withSimpleCard("Results", speechText)
+                .withReprompt(speechText)
                 .build();
     }
 }

@@ -11,7 +11,7 @@ import java.util.Optional;
 public class GetOverviewtOfChangesIntentHandler implements RequestHandler {
     @Override
     public boolean canHandle(HandlerInput handlerInput) {
-        return handlerInput.matches(Predicates.intentName("GetOverviewtOfChanges"));
+        return handlerInput.matches(Predicates.intentName("GetOverviewOfChanges"));
     }
 
     @Override
@@ -35,6 +35,7 @@ public class GetOverviewtOfChangesIntentHandler implements RequestHandler {
         return handlerInput.getResponseBuilder()
                 .withSpeech(speechText)
                 .withSimpleCard("Results", speechText)
+                .withReprompt(speechText)
                 .build();
     }
 }
