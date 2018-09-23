@@ -79,10 +79,10 @@ public class SMAXRestRequest {
 
 
         Integer total=0;
-        String say= " Following are some of the critical records :";
+        String say= " Following are some of the critical "+recordType+"s :" + System.lineSeparator();
         Map<String, String> newmap = JSONParserUtil.getRecordListDescription(response.toString());
         for (Map.Entry<String, String> entry : newmap.entrySet()){
-            say= say+ "  "+" Record ID "+ entry.getKey()+"  Title: "+ entry.getValue()+",";
+            say= say+ "  "+" Record ID "+ entry.getKey()+"  Title: "+ entry.getValue()+"," + System.lineSeparator();
            // total += Integer.parseInt((entry.getValue()));
         }
 
@@ -129,7 +129,7 @@ public class SMAXRestRequest {
         String say= " ";
         Map<String, String> newmap = JSONParserUtil.getPrirityAndCount(response.toString());
         for (Map.Entry<String, String> entry : newmap.entrySet()){
-            say= say+ "  "+" There are "+ entry.getValue()+" " +recordType+"s of "+ entry.getKey()+",";
+            say= say+ "  "+" There are "+ entry.getValue()+" " +recordType+"s of "+ entry.getKey()+", " + System.lineSeparator();
             total += Integer.parseInt((entry.getValue()));
         }
         String speechText = say +". Hence in total there are "+ total +"  total number of "+recordType+"s" ;
