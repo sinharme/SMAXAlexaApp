@@ -1,0 +1,108 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "max desk",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": [
+                        "thanks",
+                        "Thanks I am done here",
+                        "Thanks Alexa "
+                    ]
+                },
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "GetOverviewtOfIncidents",
+                    "slots": [],
+                    "samples": [
+                        "how are we doing with incidents today",
+                        "overview of incidents",
+                        "how the incident status looks like"
+                    ]
+                },
+                {
+                    "name": "GetOverviewOfProblems",
+                    "slots": [],
+                    "samples": [
+                        "how are we doing on problems",
+                        "overview of problems"
+                    ]
+                },
+                {
+                    "name": "GetOverviewOfChanges",
+                    "slots": [],
+                    "samples": [
+                        "How are we doing on changes",
+                        "overview of changes"
+                    ]
+                },
+                {
+                    "name": "GetOverviewOfRequests",
+                    "slots": [],
+                    "samples": [
+                        "How are we doing on service requests",
+                        "overview of service requests"
+                    ]
+                },
+                {
+                    "name": "GetDescriptionOfCriticalIncidents",
+                    "slots": [],
+                    "samples": [
+                        "tell me description of critical incidents"
+                    ]
+                },
+                {
+                    "name": "GetDescriptionOfCriticalChanges",
+                    "slots": [],
+                    "samples": [
+                        "give description of critical changes"
+                    ]
+                },
+                {
+                    "name": "GetDescriptionOfCriticalProblems",
+                    "slots": [],
+                    "samples": [
+                        "Please tell me some of critical problem description"
+                    ]
+                },
+                {
+                    "name": "GetDescriptionOfCriticalRequests",
+                    "slots": [],
+                    "samples": [
+                        "Please tell me some of critical service request description"
+                    ]
+                },
+                {
+                    "name": "CreateServiceRequest",
+                    "slots": [
+                        {
+                            "name": "Title",
+                            "type": "AMAZON.LITERAL"
+                        },
+                        {
+                            "name": "Description",
+                            "type": "AMAZON.LITERAL"
+                        }
+                    ],
+                    "samples": [
+                        "create a service request with title as {Title} and with description as {Description}",
+                        "Please create a new service request"
+                    ]
+                }
+            ],
+            "types": []
+        }
+    }
+}
