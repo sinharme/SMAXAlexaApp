@@ -104,5 +104,56 @@
             ],
             "types": []
         }
-    }
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "CreateServiceRequest",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "Title",
+              "type": "AMAZON.LETERAL",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Intent-CreateServiceRequest.IntentSlot-Title"
+              }
+            },
+            {
+              "name": "Description",
+              "type": "AMAZON.LETERAL",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Intent-CreateServiceRequest.IntentSlot-Description"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Intent-CreateServiceRequest.IntentSlot-Title",
+        "variations": [
+          {
+            "type": "AMAZON.LETERAL",
+            "value": "What would be the title of the issue"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Intent-CreateServiceRequest.IntentSlot-Description",
+        "variations": [
+          {
+            "type": "AMAZON.LETERAL",
+            "value": "Please provide description for the service request"
+          }
+        ]
+      }
+    ]
+  }
+
 }
