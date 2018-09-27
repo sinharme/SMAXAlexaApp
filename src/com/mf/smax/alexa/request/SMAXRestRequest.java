@@ -22,11 +22,11 @@ public class SMAXRestRequest {
    //public static final String HOST = "smax2018.05.itsma-demo.net"; // e.g. "mslon001pngx.saas.hp.com"
     //public static final String TENANTID = "712737951"; // e.g. "602818407"
 
-    public static final String HOST = "mars.itsma-x.io"; // e.g. "mslon001pngx.saas.hp.com"
-    public  static final String TENANTID = "119438017"; // e.g. "602818407"
+    public static  String HOST = "mars.itsma-x.io"; // e.g. "mslon001pngx.saas.hp.com"
+    public  static  String TENANTID = "119438017"; // e.g. "602818407"
 
-    private static final String USERID = "jennifer.falconmf";
-    private static final String PASSWORD = "Password_123";
+    private static  String USERID = "jennifer.falconmf";
+    private static  String PASSWORD = "Password_123";
 
 
     public static void main(String[] args) {
@@ -50,6 +50,15 @@ public class SMAXRestRequest {
 
     }
 
+    public SMAXRestRequest(){
+        SSLTool.disableCertificateValidation();
+        this.HOST=System.getenv("HOST");
+        this.TENANTID=System.getenv("TENANTID");
+        this.USERID=System.getenv("USERID");
+        this.PASSWORD=System.getenv("PASSWORD");
+
+
+    }
     public String getRecordDescription(String cookie, String recordType) throws Exception {
 
         String url = "https://" + HOST + "/rest/" + TENANTID + "/ems/"+recordType+"?filter=(Priority+%3D+%27CriticalPriority%27%20and%20Active+%3D+%27true%27)&layout=Id,DisplayLabel";
