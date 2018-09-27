@@ -1,6 +1,7 @@
 package com.mf.smax.alexa.request;
 
 
+import com.mf.smax.alexa.tools.SSLTool;
 import org.json.simple.JSONObject;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -18,11 +19,11 @@ public class SMAXRestRequest {
     private static final String USER_AGENT = "Mozilla/5.0";
     private static final String CONTENT_TYPE = "application/json";
 
-    public static final String HOST = "smax2018.05.itsma-demo.net"; // e.g. "mslon001pngx.saas.hp.com"
-    public static final String TENANTID = "712737951"; // e.g. "602818407"
+   //public static final String HOST = "smax2018.05.itsma-demo.net"; // e.g. "mslon001pngx.saas.hp.com"
+    //public static final String TENANTID = "712737951"; // e.g. "602818407"
 
-    //private static final String HOST = "mars.itsma-x.io"; // e.g. "mslon001pngx.saas.hp.com"
-    //private static final String TENANTID = "19438017"; // e.g. "602818407"
+    public static final String HOST = "mars.itsma-x.io"; // e.g. "mslon001pngx.saas.hp.com"
+    public  static final String TENANTID = "119438017"; // e.g. "602818407"
 
     private static final String USERID = "jennifer.falconmf";
     private static final String PASSWORD = "Password_123";
@@ -32,6 +33,7 @@ public class SMAXRestRequest {
         SMAXRestRequest http = new SMAXRestRequest();
         System.out.println("Testing 1 - Send Http auth request");
         String cookie = null;
+        SSLTool.disableCertificateValidation();
         try {
             cookie = "LWSSO_COOKIE_KEY=" + http.getAuthKey() + "; TENANTID=" + TENANTID;
             //cookie = "LWSSO_COOKIE_KEY=" +key ; //+ "; TENANTID=" + TENANTID;

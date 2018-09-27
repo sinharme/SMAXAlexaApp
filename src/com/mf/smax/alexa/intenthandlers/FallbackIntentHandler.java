@@ -17,10 +17,10 @@ public class FallbackIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String speechText = "Sorry, I don't know that. Please repeat or you can say try saying help!";
+        String speechText = "Sorry, I don't get that. Please repeat or you can say try saying help!";
         return input.getResponseBuilder()
                 .withSpeech(speechText)
-                .withSimpleCard("HelloWorld", speechText)
+                .withSimpleCard("Try again", speechText)
                 .withReprompt(speechText)
                 .build();
     }
