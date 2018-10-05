@@ -7,7 +7,10 @@ import com.mf.smax.alexa.intenthandlers.*;
 
 
 public class SMAXSkillStreamHandler extends SkillStreamHandler {
+
+
     private static Skill getSkill() {
+
         return Skills.standard()
                 .addRequestHandlers(new CancelandStopIntentHandler(), new GetOverviewtOfIncidentsIntentHandler(),
                         new HelpIntentHandler(), new LaunchRequestHandler(),
@@ -15,7 +18,7 @@ public class SMAXSkillStreamHandler extends SkillStreamHandler {
                         new GetOverviewtOfChangesIntentHandler(),new GetOverviewtOfProblemsIntentHandler(),
                         new GetCriticalIncidentsDescIntentHandler(),new GetCriticalProblemsDescIntentHandler(),
                         new GetCriticalChangesDescIntentHandler(),new GetCriticalRequestsDescIntentHandler(),
-                        new FallbackIntentHandler()
+                        new FallbackIntentHandler(), new CreateNewServiceRequestHandler()
                 )
                 .build();
     }
@@ -23,4 +26,5 @@ public class SMAXSkillStreamHandler extends SkillStreamHandler {
     public SMAXSkillStreamHandler() {
         super(getSkill());
     }
+
 }

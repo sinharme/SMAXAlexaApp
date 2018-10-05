@@ -20,7 +20,7 @@ public class SMAXRestRequest {
     private static final String CONTENT_TYPE = "application/json";
 
    //public static final String HOST = "smax2018.05.itsma-demo.net"; // e.g. "mslon001pngx.saas.hp.com"
-    //public static final String TENANTID = "712737951"; // e.g. "602818407"
+    // public static final String TENANTID = "712737951"; // e.g. "602818407"
 
     public static  String HOST = "mars.itsma-x.io"; // e.g. "mslon001pngx.saas.hp.com"
     public  static  String TENANTID = "119438017"; // e.g. "602818407"
@@ -30,27 +30,26 @@ public class SMAXRestRequest {
 
 
     public static void main(String[] args) {
-        SMAXRestRequest http = new SMAXRestRequest();
+        SMAXRestRequest connRequest = new SMAXRestRequest();
         System.out.println("Testing 1 - Send Http auth request");
         String cookie = null;
         SSLTool.disableCertificateValidation();
         try {
-            cookie = "LWSSO_COOKIE_KEY=" + http.getAuthKey() + "; TENANTID=" + TENANTID;
-            //cookie = "LWSSO_COOKIE_KEY=" +key ; //+ "; TENANTID=" + TENANTID;
-        } catch (Exception e) {
+            cookie = "LWSSO_COOKIE_KEY=" + connRequest.getAuthKey() + "; TENANTID=" + TENANTID;
+            } catch (Exception e) {
             e.printStackTrace();
         }
         System.out.println(cookie);
         System.out.println("\nTesting 2 - Send Http GET request");
         try {
-            System.out.println( http.getRecordDescription(cookie,"Incident"));
+            System.out.println( connRequest.getRecordDescription(cookie,"Incident"));
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-    public SMAXRestRequest(){
+    /*public SMAXRestRequest(){
         SSLTool.disableCertificateValidation();
         this.HOST=System.getenv("HOST");
         this.TENANTID=System.getenv("TENANTID");
@@ -58,11 +57,11 @@ public class SMAXRestRequest {
         this.PASSWORD=System.getenv("PASSWORD");
 
 
-    }
+    }*/
     public String getRecordDescription(String cookie, String recordType) throws Exception {
 
         String url = "https://" + HOST + "/rest/" + TENANTID + "/ems/"+recordType+"?filter=(Priority+%3D+%27CriticalPriority%27%20and%20Active+%3D+%27true%27)&layout=Id,DisplayLabel";
-
+        SSLTool.disableCertificateValidation();
         URL obj = new URL(url);
         HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
 
@@ -109,7 +108,7 @@ public class SMAXRestRequest {
     public String sendGetPriorityAndRecordCount(String cookie, String recordType) throws Exception {
 
         String url = "https://" + HOST + "/rest/" + TENANTID + "/ems/"+recordType+"/aggregations?filter=Active+%3D+'true'&group=Priority&layout=Priority,Count(Id)";
-
+        SSLTool.disableCertificateValidation();
         URL obj = new URL(url);
         HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
 
@@ -154,6 +153,7 @@ public class SMAXRestRequest {
 
     public String getAuthKey() throws Exception {
         String url = "https://" + HOST + "/auth/authentication-endpoint/authenticate/login?TENANTID=" + TENANTID; //USERID + "&password=" + PASSWORD;
+        SSLTool.disableCertificateValidation();
         URL object = new URL(url);
         HttpURLConnection con = null;
         con = (HttpURLConnection) object.openConnection();
