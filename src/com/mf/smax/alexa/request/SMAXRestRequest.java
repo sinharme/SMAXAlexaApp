@@ -2,7 +2,8 @@ package com.mf.smax.alexa.request;
 
 
 import com.mf.smax.alexa.tools.SSLTool;
-import org.json.simple.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
@@ -11,6 +12,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -22,8 +24,9 @@ public class SMAXRestRequest {
    //public static final String HOST = "smax2018.05.itsma-demo.net"; // e.g. "mslon001pngx.saas.hp.com"
     // public static final String TENANTID = "712737951"; // e.g. "602818407"
 
-    public static  String HOST = "mars.itsma-x.io"; // e.g. "mslon001pngx.saas.hp.com"
-    public  static  String TENANTID = "119438017"; // e.g. "602818407"
+    public static  String HOST = "smax2018.05.itsma-demo.net"; // e.g. "mslon001pngx.saas.hp.com"
+    public  static  String TENANTID = "712737951"; // e.g. "602818407"
+    public static String cookie="";
 
     private static  String USERID = "jennifer.falconmf";
     private static  String PASSWORD = "Password_123";
@@ -32,17 +35,17 @@ public class SMAXRestRequest {
     public static void main(String[] args) {
         SMAXRestRequest connRequest = new SMAXRestRequest();
         System.out.println("Testing 1 - Send Http auth request");
-        String cookie = null;
+        //String cookie = null;
         SSLTool.disableCertificateValidation();
-        try {
+        /*try {
             cookie = "LWSSO_COOKIE_KEY=" + connRequest.getAuthKey() + "; TENANTID=" + TENANTID;
             } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
         System.out.println(cookie);
         System.out.println("\nTesting 2 - Send Http GET request");
         try {
-            System.out.println( connRequest.getRecordDescription(cookie,"Incident"));
+            System.out.println( connRequest.createServiceRequest("My phone is not working since yesterday evening, please help"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -187,5 +190,70 @@ public class SMAXRestRequest {
         return key;
 
     }
+
+
+    public String createServiceRequest(String description)throws Exception{
+        SSLTool.disableCertificateValidation();
+        String url = "https://" + HOST + "/rest/" + TENANTID+"//ems/bulk"; //USERID + "&password=" + PASSWORD;
+        cookie = "LWSSO_COOKIE_KEY=" + getAuthKey() + "; TENANTID=" + TENANTID;
+        System.out.println("my cookie is " +cookie);
+
+        JSONObject properties = new JSONObject();
+        JSONObject outproperties = new JSONObject();
+        properties.put("DisplayLabel","Service Request from Alexa");
+        properties.put("RequestedByPerson","10015");
+        properties.put("Description" ,description);
+        outproperties.put("entity_type","Request");
+        outproperties.put("properties",properties);
+        JSONArray entities = new JSONArray();
+        entities.put(outproperties);
+
+
+
+        URL object = new URL(url);
+        HttpURLConnection con = null;
+        con = (HttpURLConnection) object.openConnection();
+
+        con.setDoOutput(true);
+        con.setDoInput(true);
+        con.setRequestProperty("Content-Type", "application/json");
+        con.setRequestProperty("User-Agent", "Apache-HttpClient/4.4.1");
+        con.setRequestMethod("POST");
+        con.setRequestProperty("Cookie", cookie);
+        JSONObject body = new JSONObject();
+        body.put("operation","CREATE");
+        //JSONArray entArray = new JSONArray();
+        //entities.toJSONArray(entArray);
+        body.put("entities",entities);
+        //System.out.println(body.toString());
+
+        OutputStreamWriter wr = new OutputStreamWriter(con.getOutputStream());
+        wr.write(body.toString());
+
+        OutputStream os = con.getOutputStream();
+        os.write(body.toString().getBytes());
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(
+                (con.getInputStream())));
+
+        String output = "";
+        String key = "";
+        System.out.println("Request Server .... \n");
+        while ((output = br.readLine()) != null) {
+            key += output;
+            //System.out.println(output);
+        }
+
+        JSONObject out= new JSONObject(key);
+        JSONArray resultlist = out.getJSONArray("entity_result_list");
+        JSONObject entity= resultlist.getJSONObject(0);
+        JSONObject property= entity.getJSONObject("entity").getJSONObject("properties");
+        key= property.get("Id").toString();
+        //System.out.println(property.get("Id").toString());
+
+
+        return key;
+    }
+
 }
 
